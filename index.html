@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI SaaS Ultra Premium</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#05070f;
+  --primary:#00b4ff;
+  --secondary:#7c3aed;
+  --text:#ffffff;
+  --muted:#b8c0cc;
+  --glass:rgba(255,255,255,0.06);
+  --border:rgba(255,255,255,0.12);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+  scroll-behavior:smooth;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+/* ================= NAVBAR ================= */
+.navbar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  padding:18px 60px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(5,7,15,0.55);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+  z-index:1000;
+  transition:0.3s ease;
+}
+
+.navbar:hover{
+  background:rgba(5,7,15,0.85);
+}
+
+.logo{
+  font-size:18px;
+  font-weight:700;
+  background:linear-gradient(90deg,var(--primary),var(--secondary));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.nav-links{
+  display:flex;
+  gap:25px;
+}
+
+.nav-links a{
+  text-decoration:none;
+  color:var(--muted);
+  font-size:14px;
+  position:relative;
+  transition:0.3s;
+}
+
+.nav-links a:hover{
+  color:#fff;
+}
+
+/* HAMBURGER BUTTON */
+.hamburger{
+  display:none;
+  font-size:28px;
+  color:#fff;
+  cursor:pointer;
+}
+
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:0%;
+  height:2px;
+  background:linear-gradient(90deg,var(--primary),var(--secondary));
+  transition:0.3s;
+}
+
+.nav-links a:hover::after{
+  width:100%;
+}
+
+/* ================= GLOBAL ================= */
+section{
+  padding:110px 20px;
+}
+
+.container{
+  max-width:1150px;
+  margin:auto;
+}
+
+.section-title{
+  text-align:center;
+  font-size:2.4rem;
+  margin-bottom:50px;
+  font-weight:700;
+}
+
+/* ================= HERO ================= */
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+  background:url('https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1600&q=80') center/cover;
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg, rgba(5,10,20,0.92), rgba(0,180,255,0.25));
+}
+
+.hero-content{
+  position:relative;
+  max-width:800px;
+  animation:fadeUp 1s ease;
+}
+
+.hero h1{
+  font-size:3.6rem;
+  line-height:1.1;
+}
+
+.hero p{
+  color:var(--muted);
+  margin:18px 0 30px;
+}
+
+/* BUTTONS */
+.btn{
+  display:inline-block;
+  padding:12px 28px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:500;
+  transition:0.3s;
+}
+
+.btn-primary{
+  background:linear-gradient(90deg,var(--primary),var(--secondary));
+  color:#fff;
+  box-shadow:0 10px 30px rgba(0,180,255,0.3);
+}
+
+.btn-primary:hover{
+  transform:translateY(-3px);
+  box-shadow:0 15px 40px rgba(0,180,255,0.5);
+}
+
+/* ================= CARDS ================= */
+.service-grid,
+.pricing-grid,
+.about-grid{
+  display:grid;
+  gap:25px;
+}
+
+.service-grid{
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+}
+
+.card{
+  background:var(--glass);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:28px;
+  backdrop-filter:blur(16px);
+  transition:0.3s ease;
+  position:relative;
+  overflow:hidden;
+}
+
+.card::before{
+  content:"";
+  position:absolute;
+  top:-50%;
+  left:-50%;
+  width:200%;
+  height:200%;
+  background:radial-gradient(circle, rgba(0,180,255,0.15), transparent);
+  transform:rotate(25deg);
+}
+
+.card:hover{
+  transform:translateY(-10px);
+  border-color:rgba(0,180,255,0.5);
+  box-shadow:0 0 30px rgba(0,180,255,0.15);
+}
+
+/* ================= PRICING ================= */
+.price-card{
+  background:var(--glass);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:30px;
+  text-align:center;
+  transition:0.3s;
+  position:relative;
+}
+
+.price-card:hover{
+  transform:scale(1.05);
+  box-shadow:0 20px 50px rgba(0,180,255,0.15);
+  border-color:var(--primary);
+}
+
+.price-card h2{
+  color:var(--primary);
+  font-size:2rem;
+  margin:10px 0;
+}
+
+/* ================= ABOUT ================= */
+.about-grid{
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+}
+
+.about-grid img{
+  width:100%;
+  border-radius:18px;
+  border:1px solid var(--border);
+  box-shadow:0 20px 40px rgba(0,0,0,0.4);
+}
+
+/* ================= CONTACT ================= */
+.contact-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+}
+
+.contact-info,
+.contact-form{
+  background:var(--glass);
+  border:1px solid var(--border);
+  padding:25px;
+  border-radius:18px;
+  backdrop-filter:blur(16px);
+}
+
+.contact-info p{
+  color:var(--muted);
+  margin:10px 0;
+}
+
+.contact-form input,
+.contact-form textarea{
+  width:100%;
+  padding:12px;
+  margin-bottom:12px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,0.04);
+  color:#fff;
+}
+
+.contact-form button{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  background:linear-gradient(90deg,var(--primary),var(--secondary));
+  color:#fff;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.contact-form button:hover{
+  transform:translateY(-3px);
+}
+
+/* ================= ANIMATION ================= */
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(30px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:900px){
+  .hero h1{font-size:2.4rem;}
+  .about-grid,
+  .contact-grid{
+    grid-template-columns:1fr;
+  }
+  .nav-links{display:none;}
+}
+
+/* FIX MOBILE TOGGLE */
+@media(max-width:900px){
+
+  .hamburger{
+    display:block;
+  }
+
+  .nav-links{
+    display:none;
+    position:absolute;
+    top:70px;
+    right:0;
+    width:100%;
+    flex-direction:column;
+    background:rgba(5,7,15,0.95);
+    text-align:center;
+    padding:20px 0;
+    border-bottom:1px solid var(--border);
+  }
+
+  .nav-links.active{
+    display:flex;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="logo">AI SaaS</div>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <nav class="nav-links" id="navLinks">
+    <a href="#home">Home</a>
+    <a href="#features">Features</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <h1>AI That Automates Your Work</h1>
+    <p>Ultra-modern AI automation platform built for startups and businesses.</p>
+    <a href="#pricing" class="btn btn-primary">Get Started</a>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="container">
+    <h2 class="section-title">Features</h2>
+
+    <div class="service-grid">
+      <div class="card">
+        <h3>AI Automation Engine</h3>
+        <p>Automate business workflows, emails, and repetitive tasks using intelligent AI systems.</p>
+      </div>
+
+      <div class="card">
+        <h3>Real-Time Analytics</h3>
+        <p>Turn raw data into powerful insights with AI dashboards and predictive analytics.</p>
+      </div>
+
+      <div class="card">
+        <h3>Smart Optimization</h3>
+        <p>AI continuously improves your workflow efficiency and business performance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container">
+    <h2 class="section-title">Pricing</h2>
+
+    <div class="pricing-grid">
+      <div class="price-card">
+        <h3>Starter</h3>
+        <h2>$19</h2>
+        <p>Perfect for individuals starting automation.</p>
+      </div>
+
+      <div class="price-card">
+        <h3>Pro</h3>
+        <h2>$49</h2>
+        <p>For growing businesses with advanced AI tools.</p>
+      </div>
+
+      <div class="price-card">
+        <h3>Premium</h3>
+        <h2>$99</h2>
+        <p>Full AI system with priority support and scaling.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container about-grid">
+
+    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80">
+
+    <div>
+      <h2 class="section-title" style="text-align:left;">About Us</h2>
+      <p>We build next-generation AI automation systems that help businesses scale faster, reduce costs, and improve productivity.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container contact-grid">
+
+    <div class="contact-info">
+      <h3>Contact Info</h3>
+      <p>Email: support@aisaas.com</p>
+      <p>Phone: +63 900 000 0000</p>
+      <p>Location: Philippines</p>
+    </div>
+
+    <form class="contact-form">
+      <input type="text" placeholder="Your Name">
+      <input type="email" placeholder="Your Email">
+      <textarea rows="5" placeholder="Message"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+
+  </div>
+</section>
+
+<!-- JS TOGGLE -->
+<script>
+function toggleMenu(){
+  document.getElementById("navLinks").classList.toggle("active");
+}
+</script>
+
+
+</body>
+</html>
